@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../main.dart';
 import '../widget/Buttons/bigbutton.dart';
@@ -60,31 +61,42 @@ class _Rate_DateScreenState extends State<Rate_DateScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 10,
                             color: Colors.white,
-                          )))
+                          ))),
                 ],
               ),
               const SizedBox(
-                height: 40,
+                height: 10,
               ),
               Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text('Calendar will stay here'),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                      SizedBox(
-                        height: 30,
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: TableCalendar(
+                        firstDay: DateTime.utc(2010, 10, 16),
+                        lastDay: DateTime.utc(2030, 3, 14),
+                        focusedDay: DateTime.now(),
+                        daysOfWeekHeight: 30,
+                        rowHeight: 30,
+                        availableCalendarFormats: {
+                          CalendarFormat.week: 'Month',
+                          CalendarFormat.month: 'July',
+
+                        }
+
                       ),
-                      Center(
-                          child: BigButton(
-                              myfunction: MyHomePage(),
-                              myText: 'Book Now'))
-                    ],
-                  ))
+                    ),
+
+                    SizedBox(height: 5,),
+                    const Center(
+                        child: BigButton(
+                            myfunction: MyHomePage(), myText: 'Book Now'))
+                  ],
+                ),
+              )
             ],
           ),
           const Positioned(
